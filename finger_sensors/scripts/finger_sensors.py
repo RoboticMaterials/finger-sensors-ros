@@ -9,9 +9,11 @@ from finger_sensor_msgs.msg import FingerFAI, FingerSAI, FingerTouch
 class FingerSensorNode():
     
     def __init__(self):
+        alpha = float(rospy.get_param('~alpha', '0.3'))
+        tol = float(rospy.get_param('~touch_tol', '50'))
+	rospy.loginfo("Touch Tolerance = {}".format(tol))
+	rospy.loginfo("Alpha for Exponential Filtering = {}".format(alpha))
         num_sensors = 16
-        EA = 0.3
-        tol = 50
 
         sai = np.zeros(num_sensors)
         fai = np.zeros(num_sensors)
@@ -46,7 +48,7 @@ class FingerSensorNode():
                         release = fai > 50
                         touch[hit] = True
                         touch[release] = False
-                        average_value = EA * sai + (1 - EA) * average_value
+                        average_value = alpha * sai + (1 - alpha) * average_value
                         msg = FingerSAI()
                         self.publish_msg(sai[:8], left_finger_sai_pub, msg)
                         self.publish_msg(sai[8:], right_finger_sai_pub, msg)
