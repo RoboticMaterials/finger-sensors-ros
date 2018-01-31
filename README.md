@@ -119,3 +119,11 @@ Here is a sample of what the signals look like
 <img src="https://github.com/RoboticMaterials/FA-I-sensor/blob/master/screenshot_serialplotter.png" width=500>
 
 The blue signal is the raw proximity reading. After touch, it roughly corresponds to the human SA-I signal, that is slow adapting pressure. You would not notice anything if it slowly changes, but only if the value exceeds a certain threshold. The yellow signal roughly corresponds to the human FA-I signal, that is fast adapting pressure. It helps you notice changes such as the lightest contact, but keeps quiet for constant pressure. Thinking about wearing clothes is a good analogy: your FA-I sensors alert you when you wear them and your SA-I sensors ignore them, but notice of you larger changes.
+
+## Messages
+
+After taking a look at the messages like [this](https://github.com/RoboticMaterials/finger-sensors-ros/blob/master/finger_sensor_msgs/msg/FingerFAI.msg) you will notice that each message is composed of fields sensor1, sensor2, and so on until sensor8. To see the which sensor value corresponds to which sensor on your fingers take a look at the diagram below
+
+<img src="https://github.com/RoboticMaterials/FA-I-sensor/blob/master/robotiq_drawing_sensor_num.png" width=200>
+
+Note that the sensor layout is identical for the left and right sensor as well as the Kinova and Robotiq model.
