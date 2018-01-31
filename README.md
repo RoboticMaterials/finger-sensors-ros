@@ -114,4 +114,8 @@ This is for more advanced users. It is used to determine if a sensor has made co
 
 This is for more advanced users. This can be used for two purposes, to correct the pre-grasp pose and/or to detect slip during manipulation. With the former use case, the SAI signal acts as a  [3D scanner](http://www.cs.utexas.edu/~jsinapov/AAAI-SSS-2017/paper/Cox_AAAI_SSS_2017.pdf) before making contact. Use this to verify if an object is within the robot's end-effector, or use it to scan the object and find the correct grasp pose. Once the object is grasped, use the SAI signal to determine if the object is slipping during manipulation to adjust grasp strength accordingly. 
 
+Here is a sample of what the signals look like
 
+<img src="https://github.com/RoboticMaterials/FA-I-sensor/blob/master/screenshot_serialplotter.png" width=500>
+
+The blue signal is the raw proximity reading. After touch, it roughly corresponds to the human SA-I signal, that is slow adapting pressure. You would not notice anything if it slowly changes, but only if the value exceeds a certain threshold. The yellow signal roughly corresponds to the human FA-I signal, that is fast adapting pressure. It helps you notice changes such as the lightest contact, but keeps quiet for constant pressure. Thinking about wearing clothes is a good analogy: your FA-I sensors alert you when you wear them and your SA-I sensors ignore them, but notice of you larger changes.
